@@ -1,8 +1,7 @@
 m = Map("cgminer", translate("Configuration"),
-        translate("Please visit <a href='http://en.bitcoin.it/wiki/Avalon'> http://en.bitcoin.it/wiki/Avalon</a> for documentation and "..
-        "join IRC channel: <a href='http://goo.gl/2ll1C0'> #avalon @freenode.net</a> for share and help."))
+        translate("configuration"))
 
-conf = m:section(TypedSection, "cgminer", "")
+conf = m:section(TypedSection, "cgminer", "General")
 conf.anonymous = true
 conf.addremove = false
 
@@ -22,19 +21,15 @@ pb:value("--balance", translate("Balance"))
 pb:value("--load-balance", translate("Load Balance"))
 pb:value("  ", translate("Failover"))
 
-asic = conf:option(ListValue, "asic", translate("Avalon Chip(Default: 110nm)"))
-asic.default = "110"
-asic:value("110", translate("110nm"))
-asic:value("55", translate("55nm"))
 
-cf = conf:option(Value, "chip_frequency", translate("Chip Frequency(Default: 300)"))
-
-mc = conf:option(Value, "miner_count", translate("Miner Count(Default: 24)"))
 api_allow = conf:option(Value, "api_allow", translate("API Allow(Default: W:127.0.0.1)"))
 
-target=conf:option(Value, "target", translate("Target Temperature"))
-overheat=conf:option(Value, "overheat", translate("Overheat Cut Off Temperature"))
-
 more_options = conf:option(Value, "more_options", translate("More Options(Default: --quiet)"))
+
+clam = m:section(TypedSection, "cgminer", "Clam ASIC")
+clam.anonymous = true
+clam.addremove = false
+
+cc = clam:option(Value, "clam_clock", translate("Clam Clock (Default: 320)"))
 
 return m
